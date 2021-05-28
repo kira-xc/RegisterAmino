@@ -172,6 +172,7 @@ while True:
         print("your name ",nickname)
         print("your user : @"+aminoId)
         print("email : ",email)
+        client.join_community("3")
         client.logout()
         print("\n\n\n")
         saveemail="echo "+email+">>email.txt"
