@@ -6,9 +6,8 @@
 import json
 import base64
 import requests
-
 from uuid import UUID
-from os import urandom
+from os import urandom,path
 from time import timezone
 from typing import BinaryIO
 from binascii import hexlify
@@ -177,5 +176,19 @@ while True:
         print("\n\n\n")
         saveemail="echo "+email+">>email.txt"
         system(saveemail)
-    
+        if path.exists("email.json")==False:
+            data=[]
+        else:
+            with open('email.json') as json_file:
+                data = json.load(json_file)
+        data.append({
+            'email': email,
+            'password': password,
+            'device': device
+            })
+        try:
+            with open('email.json', 'w') as outfile:
+                json.dump(data, outfile)
+        except:
+            print("cant save email.json")    
     
